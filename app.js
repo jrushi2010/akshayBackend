@@ -153,23 +153,33 @@ const deleteUser = (req, res) => {
 // app.delete('/api/v1/students/:id', deleteStudent);
 
 //api routes
-app.route('/api/v1/students')
+const studentRouter = express.Router();
+
+const userRouter = express.Router();
+
+studentRouter
+    .route('/')
     .get(getAllStudents)
     .post(createStudent);
 
-app.route('/api/v1/students/:id')
+studentRouter
+    .route('/:id')
     .get(getStudent)
     .patch(updateStudent)
     .delete(deleteStudent);
 
-app.route('/api/v1/users')
+userRouter.route('/')
     .get(getAllUsers)
     .post(createUsers)
 
-app.route('/api/v1/users/:id')
+userRouter.route('/:id')
     .get(getUser)
     .patch(updateUser)
     .delete(deleteUser)
+
+app.use('/api/v1/students', studentRouter);
+app.use('/api/v1/users', userRouter);
+
 
 app.listen(port, () => {
     console.log(`app running on port ${port}...`);
