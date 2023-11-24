@@ -37,7 +37,31 @@ app.post('/api/v1/students', (req, res) => {
                 }
             })
     })
-})
+});
+
+app.get('/api/v1/students/:id', (req, res) => {
+    console.log(req.params);
+
+    const id = req.params.id * 1;
+
+    const student = students.find(el => el.id === id);
+
+    // if (id > students.length) {
+    if (!student) {
+        return res.status(404).json({
+            status: 'failed',
+            message: 'Invalid ID'
+        });
+    }
+
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            student
+        }
+    });
+});
 
 app.listen(port, () => {
     console.log(`app running on port ${port}...`);
