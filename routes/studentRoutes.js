@@ -10,7 +10,7 @@ router.param('id', studentController.checkID);
 router
     .route('/')
     .get(studentController.getAllStudents)
-    .post(studentController.createStudent);
+    .post(studentController.checkBody, studentController.createStudent);
 
 router
     .route('/:id')

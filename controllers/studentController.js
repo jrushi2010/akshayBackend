@@ -21,6 +21,17 @@ exports.checkID = (req, res, next, val) => {
     next();
 }
 
+exports.checkBody = (req, res, next) => {
+    if (!req.body.studentFirstName || req.body.TotalFees) {
+        return res.status(400).json({
+            status: 'fail',
+            message: 'Missing name or fees'
+        })
+    }
+
+    next();
+}
+
 //apis
 exports.getAllStudents = (req, res) => {
     res.status(200).json({

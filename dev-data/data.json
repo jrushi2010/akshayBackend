@@ -1,1 +1,116 @@
-[{"id":0,"studentFirstName":"Tejas","studentLastName":"Pathak","parentName":"","MothersName":"","schoolName":"Patvardhan","gender":"male","image":"","sign":"","address":"Sangli","mobileNo":9881007962,"parentMobileNo":"","addharNo":963852741789,"isHandicaped":false,"selectedCourse":["MS-CIT","Tally"],"HandicapIn":"","isAdmitted":true,"TotalFees":"10000","feesWhileAdmission":"2000","discount":2000,"totalRemainingFees":6000,"isFeesCompleted":false,"2ndInstallment":3000,"3rdInallment":3000,"courseStartDate":"2022-05-01,10:00","admissionDate":"2022-04-01,10:00","inquiryDate":"2022-03-01,10:00","inquiryFollowup":["2022-03-01,10:00","2022-03-01,10:00"],"currentStatus":"inquiry"},{"id":1,"studentFirstName":"Omkar","studentLastName":"Mane","parentName":"","MothersName":"","schoolName":"Sangli highschool","gender":"male","image":"","sign":"","address":"Sangli","mobileNo":789652753,"parentMobileNo":"","addharNo":963852741789,"isHandicaped":false,"selectedCourse":["Tally"],"HandicapIn":"","isAdmitted":true,"TotalFees":"10000","feesWhileAdmission":"2000","discount":2000,"totalRemainingFees":6000,"isFeesCompleted":false,"2ndInstallment":3000,"3rdInallment":3000,"courseStartDate":"2022-05-01,10:00","admissionDate":"2022-04-01,10:00","inquiryDate":"2022-03-01,10:00","inquiryFollowup":["2022-03-01,10:00","2022-03-01,10:00"],"currentStatus":"inquiry"},{"id":2,"studentFirstName":"Rohit","studentLastName":"Shetti","parentName":"","MothersName":"","schoolName":"Patvardhan","gender":"male","image":"","sign":"","address":"Sangli","mobileNo":951753852,"parentMobileNo":"","addharNo":963852741789,"isHandicaped":false,"selectedCourse":["MS-CIT"],"HandicapIn":"","isAdmitted":true,"TotalFees":"10000","feesWhileAdmission":"2000","discount":2000,"totalRemainingFees":6000,"isFeesCompleted":false,"2ndInstallment":3000,"3rdInallment":3000,"courseStartDate":"2022-05-01,10:00","admissionDate":"2022-04-01,10:00","inquiryDate":"2022-03-01,10:00","inquiryFollowup":["2022-03-01,10:00","2022-03-01,10:00"],"currentStatus":"inquiry"},{"id":3,"name":"rutuja","duration":"3"}]
+[
+    {
+        "id": 0,
+        "studentFirstName": "Tejas",
+        "studentLastName": "Pathak",
+        "parentName": "",
+        "MothersName": "",
+        "schoolName": "Patvardhan",
+        "gender": "male",
+        "image": "",
+        "sign": "",
+        "address": "Sangli",
+        "mobileNo": 9881007962,
+        "parentMobileNo": "",
+        "addharNo": 963852741789,
+        "isHandicaped": false,
+        "selectedCourse": [
+            "MS-CIT",
+            "Tally"
+        ],
+        "HandicapIn": "",
+        "isAdmitted": true,
+        "TotalFees": "10000",
+        "feesWhileAdmission": "2000",
+        "discount": 2000,
+        "totalRemainingFees": 6000,
+        "isFeesCompleted": false,
+        "2ndInstallment": 3000,
+        "3rdInallment": 3000,
+        "courseStartDate": "2022-05-01,10:00",
+        "admissionDate": "2022-04-01,10:00",
+        "inquiryDate": "2022-03-01,10:00",
+        "inquiryFollowup": [
+            "2022-03-01,10:00",
+            "2022-03-01,10:00"
+        ],
+        "currentStatus": "inquiry"
+    },
+    {
+        "id": 1,
+        "studentFirstName": "Omkar",
+        "studentLastName": "Mane",
+        "parentName": "",
+        "MothersName": "",
+        "schoolName": "Sangli highschool",
+        "gender": "male",
+        "image": "",
+        "sign": "",
+        "address": "Sangli",
+        "mobileNo": 789652753,
+        "parentMobileNo": "",
+        "addharNo": 963852741789,
+        "isHandicaped": false,
+        "selectedCourse": [
+            "Tally"
+        ],
+        "HandicapIn": "",
+        "isAdmitted": true,
+        "TotalFees": "10000",
+        "feesWhileAdmission": "2000",
+        "discount": 2000,
+        "totalRemainingFees": 6000,
+        "isFeesCompleted": false,
+        "2ndInstallment": 3000,
+        "3rdInallment": 3000,
+        "courseStartDate": "2022-05-01,10:00",
+        "admissionDate": "2022-04-01,10:00",
+        "inquiryDate": "2022-03-01,10:00",
+        "inquiryFollowup": [
+            "2022-03-01,10:00",
+            "2022-03-01,10:00"
+        ],
+        "currentStatus": "inquiry"
+    },
+    {
+        "id": 2,
+        "studentFirstName": "Rohit",
+        "studentLastName": "Shetti",
+        "parentName": "",
+        "MothersName": "",
+        "schoolName": "Patvardhan",
+        "gender": "male",
+        "image": "",
+        "sign": "",
+        "address": "Sangli",
+        "mobileNo": 951753852,
+        "parentMobileNo": "",
+        "addharNo": 963852741789,
+        "isHandicaped": false,
+        "selectedCourse": [
+            "MS-CIT"
+        ],
+        "HandicapIn": "",
+        "isAdmitted": true,
+        "TotalFees": "10000",
+        "feesWhileAdmission": "2000",
+        "discount": 2000,
+        "totalRemainingFees": 6000,
+        "isFeesCompleted": false,
+        "2ndInstallment": 3000,
+        "3rdInallment": 3000,
+        "courseStartDate": "2022-05-01,10:00",
+        "admissionDate": "2022-04-01,10:00",
+        "inquiryDate": "2022-03-01,10:00",
+        "inquiryFollowup": [
+            "2022-03-01,10:00",
+            "2022-03-01,10:00"
+        ],
+        "currentStatus": "inquiry"
+    },
+    {
+        "id": 3,
+        "name": "rutuja",
+        "duration": "3"
+    }
+]
