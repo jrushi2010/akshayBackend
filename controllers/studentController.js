@@ -5,6 +5,22 @@ const students = JSON.parse(
     fs.readFileSync(`${__dirname}/../dev-data/data.json`)
 );
 
+exports.checkID = (req, res, next, val) => {
+
+    console.log(`Student id is : ${val}`);
+
+    const id = req.params.id * 1;
+
+    if (id > students.length) {
+        return res.status(404).json({
+            status: 'failed',
+            message: 'Invalid ID'
+        });
+    }
+
+    next();
+}
+
 //apis
 exports.getAllStudents = (req, res) => {
     res.status(200).json({
@@ -23,14 +39,6 @@ exports.getStudent = (req, res) => {
     const id = req.params.id * 1;
 
     const student = students.find(el => el.id === id);
-
-    // if (id > students.length) {
-    if (!student) {
-        return res.status(404).json({
-            status: 'failed',
-            message: 'Invalid ID'
-        });
-    }
 
     res.status(200).json({
         status: 'success',
@@ -61,15 +69,6 @@ exports.createStudent = (req, res) => {
 
 exports.updateStudent = (req, res) => {
 
-    const id = req.params.id * 1;
-
-    if (id > students.length) {
-        return res.status(404).json({
-            status: 'failed',
-            message: 'Invalid ID'
-        });
-    }
-
     res.status(200)
         .json({
             status: 'success',
@@ -80,15 +79,6 @@ exports.updateStudent = (req, res) => {
 }
 
 exports.deleteStudent = (req, res) => {
-
-    const id = req.params.id * 1;
-
-    if (id > students.length) {
-        return res.status(404).json({
-            status: 'failed',
-            message: 'Invalid ID'
-        });
-    }
 
     res.status(204)
         .json({
