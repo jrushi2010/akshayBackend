@@ -10,9 +10,16 @@ const students = JSON.parse(
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+    req.requestTime = new Date().toISOString();
+    next();
+});
+
+//apis
 const getAllStudents = (req, res) => {
     res.status(200).json({
         status: 'success',
+        requestedAt: req.requestTime,
         results: students.length,
         data: {
             students
@@ -100,12 +107,52 @@ const deleteStudent = (req, res) => {
         });
 }
 
+const getAllUsers = (req, res) => {
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined'
+    });
+};
+
+const createUsers = (req, res) => {
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined'
+    });
+};
+const getUser = (req, res) => {
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined'
+    });
+};
+
+const updateUser = (req, res) => {
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined'
+    });
+};
+
+const deleteUser = (req, res) => {
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined'
+    });
+};
+
+
+
+
+
+
 // app.get('/api/v1/students', getAllStudents);
 // app.get('/api/v1/students/:id', getStudent);
 // app.post('/api/v1/students', createStudent);
 // app.patch('/api/v1/students/:id', updateStudent);
 // app.delete('/api/v1/students/:id', deleteStudent);
 
+//api routes
 app.route('/api/v1/students')
     .get(getAllStudents)
     .post(createStudent);
@@ -114,6 +161,15 @@ app.route('/api/v1/students/:id')
     .get(getStudent)
     .patch(updateStudent)
     .delete(deleteStudent);
+
+app.route('/api/v1/users')
+    .get(getAllUsers)
+    .post(createUsers)
+
+app.route('/api/v1/users/:id')
+    .get(getUser)
+    .patch(updateUser)
+    .delete(deleteUser)
 
 app.listen(port, () => {
     console.log(`app running on port ${port}...`);
