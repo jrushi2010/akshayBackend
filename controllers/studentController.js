@@ -20,7 +20,16 @@ exports.getAllStudents = async (req, res) => {
         queryStr = queryStr.replace(/\b{gte|gt|lt|lte}\b/g, (match) => `$${match}`);
         console.log(JSON.parse(queryStr));
 
-        const query = Student.find(JSON.parse(queryStr));
+        let query = Student.find(JSON.parse(queryStr));
+
+        //sorting
+        if (req.query.sort) {
+            const sortBy = req.query.sort.split(',').join * (' ');
+            console.log(sortBy)
+            query = query.sort(sortBy);
+        } else {
+            query = query.sort('-createdAt');
+        }
 
         //EXECUTE QUERY
         const students = await query;

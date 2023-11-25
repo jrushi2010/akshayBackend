@@ -11,3 +11,7 @@ http://localhost:8000/api/v1/students?Status=Admission&selectedCourse=MS-CIT&pag
 http://localhost:8000/api/v1/students?discount[gt]=1000
 
 http://localhost:8000/api/v1/students?discount[lt]=2000
+
+# sorting
+
+http://localhost:8000/api/v1/students?sort=TotalFees,discount
