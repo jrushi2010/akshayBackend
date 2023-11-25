@@ -15,3 +15,11 @@ http://localhost:8000/api/v1/students?discount[lt]=2000
 # sorting
 
 http://localhost:8000/api/v1/students?sort=TotalFees,discount
+
+# limiting fields
+
+http://localhost:8000/api/v1/students?fields=selectedCourse,discount,TotalFees,mobileNo
+it gives excluding all other fields
+
+http://localhost:8000/api/v1/students?fields=-discount,-TotalFees
+it gives excluding discount and TotalFees
