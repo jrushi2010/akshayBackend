@@ -5,16 +5,22 @@ const Student = require('./../models/studentModel');
 //apis
 exports.getAllStudents = async (req, res) => {
     try {
+        //console.log(req.query, queryObj)
+
         //BUILD QUERY
+        //filtering
         const queryObj = { ...req.query };
 
         const excludedFields = ['page', 'sort', 'limit', 'fields'];
 
         excludedFields.forEach(el => delete queryObj[el]);
 
-        //console.log(req.query, queryObj)
+        //advance filtering
+        let queryStr = JSON.stringify(queryObj);
+        queryStr = queryStr.replace(/\b{gte|gt|lt|lte}\b/g, (match) => `$${match}`);
+        console.log(JSON.parse(queryStr));
 
-        const query = Student.find(queryObj);
+        const query = Student.find(JSON.parse(queryStr));
 
         //EXECUTE QUERY
         const students = await query;
