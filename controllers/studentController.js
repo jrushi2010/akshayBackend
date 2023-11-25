@@ -39,6 +39,20 @@ exports.getAllStudents = async (req, res) => {
             query = query.select('-__v');
         }
 
+        //pagination
+
+        const page = req.query.page * 1 || 1;
+        const limit = req.query.limit * 1 || 100;
+        const skip = (page - 1) * limit;
+
+        //page=2&limit=10, 1-10 on page 1 and 11-20 on page 2 and 21-30on page 3
+        query = query.skip(skip).limit(limit);
+
+        if (req.query.page) {
+            const numStudents = await Student.countDocuments();
+            if (skip > numStudents) throw new Error('This page is does not exist');
+        }
+
         //EXECUTE QUERY
         const students = await query;
 

@@ -23,3 +23,7 @@ it gives excluding all other fields
 
 http://localhost:8000/api/v1/students?fields=-discount,-TotalFees
 it gives excluding discount and TotalFees
+
+# pagination
+
+http://localhost:8000/api/v1/students?page=1&limit=2
