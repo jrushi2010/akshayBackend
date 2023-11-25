@@ -5,8 +5,21 @@ const Student = require('./../models/studentModel');
 //apis
 exports.getAllStudents = async (req, res) => {
     try {
-        const students = await Student.find();
+        //BUILD QUERY
+        const queryObj = { ...req.query };
 
+        const excludedFields = ['page', 'sort', 'limit', 'fields'];
+
+        excludedFields.forEach(el => delete queryObj[el]);
+
+        //console.log(req.query, queryObj)
+
+        const query = Student.find(queryObj);
+
+        //EXECUTE QUERY
+        const students = await query;
+
+        //SEND RESPONSE
         res.status(200).json({
             status: 'success',
             results: students.length,
