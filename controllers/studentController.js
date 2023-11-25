@@ -1,73 +1,52 @@
 const express = require('express');
 const fs = require('fs');
+const Student = require('./../models/studentModel');
 
-const students = JSON.parse(
-    fs.readFileSync(`${__dirname}/../dev-data/data.json`)
-);
+//apis
+exports.getAllStudents = async (req, res) => {
+    try {
+        const students = await Student.find();
 
-exports.checkID = (req, res, next, val) => {
-
-    console.log(`Student id is : ${val}`);
-
-    const id = req.params.id * 1;
-
-    if (id > students.length) {
-        return res.status(404).json({
-            status: 'failed',
-            message: 'Invalid ID'
+        res.status(200).json({
+            status: 'success',
+            results: students.length,
+            data: {
+                students
+            }
         });
-    }
-
-    next();
-}
-
-exports.checkBody = (req, res, next) => {
-    if (!req.body.studentFirstName || req.body.TotalFees) {
-        return res.status(400).json({
-            status: 'fail',
-            message: 'Missing name or fees'
+    } catch (err) {
+        res.status(400).json({
+            status: 'failed',
+            message: err
         })
     }
 
-    next();
 }
 
-//apis
-exports.getAllStudents = (req, res) => {
-    res.status(200).json({
-        status: 'success',
-        requestedAt: req.requestTime,
-        results: students.length,
-        data: {
-            students
-        }
-    });
+exports.getStudent = async (req, res) => {
+    try {
+        const student = await Student.findById(req.params.id);
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                student
+            }
+        });
+
+    } catch (err) {
+        res.status(400).json({
+            status: 'failed',
+            message: err
+        })
+    }
 }
 
-exports.getStudent = (req, res) => {
-    console.log(req.params);
+exports.createStudent = async (req, res) => {
 
-    const id = req.params.id * 1;
+    try {
+        const newStudent = await Student.create(req.body);
 
-    const student = students.find(el => el.id === id);
-
-    res.status(200).json({
-        status: 'success',
-        data: {
-            student
-        }
-    });
-}
-
-exports.createStudent = (req, res) => {
-    //console.log(req.body);
-    const newId = students[students.length - 1].id + 1;
-
-    const newStudent = Object.assign({ id: newId }, req.body);
-
-    students.push(newStudent);
-
-    fs.writeFile(`${__dirname}/dev-data/data.json`, JSON.stringify(students), err => {
         res.status(201)
             .json({
                 status: 'success',
@@ -75,25 +54,54 @@ exports.createStudent = (req, res) => {
                     student: newStudent
                 }
             })
-    })
-}
-
-exports.updateStudent = (req, res) => {
-
-    res.status(200)
-        .json({
-            status: 'success',
-            data: {
-                student: '<updated students is here...>'
-            }
+    } catch (err) {
+        res.status(400).json({
+            status: 'failed',
+            message: 'Invalid data send!'
         })
+    }
+
 }
 
-exports.deleteStudent = (req, res) => {
+exports.updateStudent = async (req, res) => {
+    try {
 
-    res.status(204)
-        .json({
-            status: 'success',
-            data: null
+        const student = await Student.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true
         });
+
+        res.status(200)
+            .json({
+                status: 'success',
+                data: {
+                    student
+                }
+            })
+    } catch (err) {
+        res.status(400).json({
+            status: 'failed',
+            message: err
+        })
+    }
+
+}
+
+exports.deleteStudent = async (req, res) => {
+    try {
+
+        await Student.findByIdAndDelete(req.params.id);
+
+        res.status(204)
+            .json({
+                status: 'success',
+                data: null
+            });
+    } catch (err) {
+        res.status(400).json({
+            status: 'failed',
+            message: err
+        })
+    }
+
 }
