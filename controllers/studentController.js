@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const Student = require('./../models/studentModel');
+const APIFeatures = require('./../utils/apiFeatures');
 
 
 exports.TopStudents = (req, res, next) => {
@@ -8,61 +9,19 @@ exports.TopStudents = (req, res, next) => {
     req.query.sort = '-selectedCourse,TotalFees';
     req.query.fields = 'studentRollNo,selectedCourse,TotalFees,discount,studentFirstName,studentLastName'
     next();
-}
+};
+
 
 //apis
 exports.getAllStudents = async (req, res) => {
     try {
-        //console.log(req.query, queryObj)
-
-        //BUILD QUERY
-        //filtering
-        const queryObj = { ...req.query };
-
-        const excludedFields = ['page', 'sort', 'limit', 'fields'];
-
-        excludedFields.forEach(el => delete queryObj[el]);
-
-        //advance filtering
-        let queryStr = JSON.stringify(queryObj);
-        queryStr = queryStr.replace(/\b{gte|gt|lt|lte}\b/g, (match) => `$${match}`);
-        console.log(JSON.parse(queryStr));
-
-        let query = Student.find(JSON.parse(queryStr));
-
-        //sorting
-        if (req.query.sort) {
-            const sortBy = req.query.sort.split(',').join * (' ');
-            console.log(sortBy)
-            query = query.sort(sortBy);
-        } else {
-            query = query.sort('-createdAt');
-        }
-
-        //field limiting
-        if (req.query.fields) {
-            const fields = req.query.fields.split(',').join(' ');
-            query = query.select(fields);
-        } else {
-            query = query.select('-__v');
-        }
-
-        //pagination
-
-        const page = req.query.page * 1 || 1;
-        const limit = req.query.limit * 1 || 100;
-        const skip = (page - 1) * limit;
-
-        //page=2&limit=10, 1-10 on page 1 and 11-20 on page 2 and 21-30on page 3
-        query = query.skip(skip).limit(limit);
-
-        if (req.query.page) {
-            const numStudents = await Student.countDocuments();
-            if (skip > numStudents) throw new Error('This page is does not exist');
-        }
-
         //EXECUTE QUERY
-        const students = await query;
+        const features = new APIFeatures(Student.find(), req.query)
+            .filter()
+            .sort()
+            .limit()
+            .paginate();
+        const students = await features.query;
 
         //SEND RESPONSE
         res.status(200).json({
