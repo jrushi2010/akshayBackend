@@ -27,3 +27,7 @@ it gives excluding discount and TotalFees
 # pagination
 
 http://localhost:8000/api/v1/students?page=1&limit=2
+
+# alising
+
+http://localhost:8000/api/v1/students/top-5-fees

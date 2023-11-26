@@ -2,6 +2,14 @@ const express = require('express');
 const fs = require('fs');
 const Student = require('./../models/studentModel');
 
+
+exports.TopStudents = (req, res, next) => {
+    req.query.limit = '5';
+    req.query.sort = '-selectedCourse,TotalFees';
+    req.query.fields = 'studentRollNo,selectedCourse,TotalFees,discount,studentFirstName,studentLastName'
+    next();
+}
+
 //apis
 exports.getAllStudents = async (req, res) => {
     try {
